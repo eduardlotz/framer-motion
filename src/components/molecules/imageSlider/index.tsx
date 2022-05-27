@@ -5,7 +5,7 @@ import { variants } from "../../../styles/variants";
 import { ImageModal } from "./modal";
 import { SliderImage, ImageSliderImageProps, ImageSliderProps } from "./types";
 
-export const ImageSlider = ({ images }: ImageSliderProps) => {
+export const ImageSlider = ({ images, smartTransition }: ImageSliderProps) => {
   const [selectedUrl, setSelectedUrl] = useState("");
 
   const selectImage = (url: string) => {
@@ -19,6 +19,7 @@ export const ImageSlider = ({ images }: ImageSliderProps) => {
         layoutId={selectedUrl}
         imageUrl={selectedUrl}
         isOpen={selectedUrl !== ""}
+        smartTransition={smartTransition}
       />
 
       <ImageSliderWrapper layoutScroll>
@@ -45,9 +46,7 @@ const ImageSliderItem = ({
   index,
 }: SliderImage) => {
   const dynamicLayoutId = useMemo(() => {
-    const selected = selectedUrl === imageUrl;
-
-    return selected ? `selected-image` : `${imageUrl}-image`;
+    return selectedUrl === imageUrl ? `selected-image` : `${imageUrl}-image`;
   }, [imageUrl, selectedUrl]);
 
   return (
@@ -87,10 +86,12 @@ const ImageSliderItem = ({
 };
 
 const HoverEffectWrapper = styled(motion.div)`
-  height: fit-content;
+  /* height: fit-content; */
   width: fit-content;
   overflow: hidden;
   position: relative;
+
+  height: 500px;
 `;
 
 const ImageLabel = styled(motion.p)`
@@ -134,7 +135,7 @@ const ImageSliderWrapper = styled(motion.div)`
   flex-direction: row;
   gap: 20px;
   width: 100%;
-  max-width: 1440px;
+
   margin: 0 auto;
   overflow-x: scroll;
 

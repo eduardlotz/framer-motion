@@ -132,7 +132,7 @@ const FullScreenImage = styled(motion.img)`
 
 const ImageAnimationWrapper = styled(motion.div)`
   width: 100%;
-  max-width: calc(1440px - 160px);
+  max-width: calc(100% - 160px);
 
   height: 620px;
   min-height: 620px;

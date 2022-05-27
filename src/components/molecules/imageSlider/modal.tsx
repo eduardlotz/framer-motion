@@ -1,12 +1,15 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useDomEvent } from "framer-motion";
+import { useRef } from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
+import { variants } from "../../../styles/variants";
 
 interface ImagemodalProps {
   imageUrl?: string;
   onClose: () => void;
   layoutId?: string;
   isOpen?: boolean;
+  smartTransition?: boolean;
 }
 
 export const ImageModal = ({
@@ -14,26 +17,40 @@ export const ImageModal = ({
   onClose,
   layoutId,
   isOpen,
+  smartTransition,
 }: ImagemodalProps) => {
-  console.log("ImageModal layoutId", `${imageUrl}-image`);
+  useDomEvent(useRef(window), "scroll", () => isOpen && onClose());
+
+  const smartTransitionConfig = {
+    layoutId: `${imageUrl}-image`,
+    transition: {
+      type: "spring",
+      damping: 10,
+      mass: 0.3,
+      stiffness: 100,
+    },
+  };
+
+  const fadeTransitionConfig = {
+    variants: variants.slideUp,
+    initial: "hidden",
+    animate: "visible",
+    exit: "exit",
+  };
+
+  const imageTransitionConfig = smartTransition
+    ? smartTransitionConfig
+    : fadeTransitionConfig;
 
   return ReactDOM.createPortal(
     <AnimatePresence>
       {isOpen && (
         <>
-          <FullScreenImageWrapper layoutId={`${imageUrl}-wrapper`}>
-            <FullscreenImage
-              layoutId={`${imageUrl}-image`}
-              transition={{
-                type: "spring",
-                damping: 10,
-                mass: 0.5,
-                stiffness: 40,
-              }}
-              src={imageUrl}
-              onClick={onClose}
-            />
-          </FullScreenImageWrapper>
+          <FullscreenImage
+            src={imageUrl}
+            onClick={onClose}
+            {...imageTransitionConfig}
+          />
           <FullScreenBackground
             onClick={onClose}
             animate={{ opacity: 1 }}
@@ -46,20 +63,6 @@ export const ImageModal = ({
     document.body
   );
 };
-
-const FullScreenImageWrapper = styled(motion.div)`
-  position: absolute;
-  top: 40px;
-  bottom: 40px;
-  left: 0;
-  right: 0;
-
-  max-height: 100%;
-  width: fit-content;
-
-  margin: 0 auto;
-  z-index: 25;
-`;
 
 const FullScreenBackground = styled(motion.div)`
   position: fixed;
@@ -78,7 +81,19 @@ const FullScreenBackground = styled(motion.div)`
 `;
 
 const FullscreenImage = styled(motion.img)`
-  height: 100%;
-
+  /* height: 100%; */
   object-fit: contain;
+  background-position: center;
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  max-height: calc(100vh - 80px);
+  width: auto;
+
+  margin: auto;
+  z-index: 25;
 `;

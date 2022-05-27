@@ -12,4 +12,5 @@ export interface ImageSliderImageProps {
 
 export interface ImageSliderProps {
   images: SliderImage[];
+  smartTransition?: boolean;
 }

@@ -73,6 +73,7 @@ export const variants = {
         type: "spring",
         duration: 0.4,
       },
+      cursor: "pointer",
     },
     childHover: {
       scale: 1.15,

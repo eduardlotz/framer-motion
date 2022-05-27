@@ -36,15 +36,16 @@ export const AboutPage = () => {
         <div style={{ marginBottom: "24px" }}>
           <SplitSlideUp text="About us" splitBy="words" component={H2} />
         </div>
-        <ImageSlider images={images} />
+        <ImageSlider images={images} smartTransition={false} />
       </Wrapper>
+
       <Footer />
     </Container>
   );
 };
 
-const Wrapper = styled.div`
-  max-width: 1440px;
+const Wrapper = styled.div<{ maxWidth?: number | string }>`
+  max-width: ${({ maxWidth }) => (maxWidth !== undefined ? maxWidth : "100%")};
 
   padding: 0 80px;
   max-height: 100%;
@@ -57,7 +58,6 @@ const Wrapper = styled.div`
 `;
 
 const Container = styled(motion.div)`
-  width: 100%;
-  max-width: 1440px;
+  max-width: 100%;
   max-height: 100%;
 `;

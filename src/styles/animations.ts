@@ -10,3 +10,10 @@ export const closeSpring = {
   damping: 35,
   mass: 1.5,
 };
+
+export const DEFAULT_TRANSITION_CONFIG = {
+  type: "spring",
+  damping: 15,
+  mass: 0.6,
+  stiffness: 80,
+};
