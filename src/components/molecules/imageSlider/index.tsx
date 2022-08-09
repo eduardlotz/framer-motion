@@ -86,7 +86,6 @@ const ImageSliderItem = ({
 };
 
 const HoverEffectWrapper = styled(motion.div)`
-  /* height: fit-content; */
   width: fit-content;
   overflow: hidden;
   position: relative;

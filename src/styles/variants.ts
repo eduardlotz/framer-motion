@@ -91,15 +91,14 @@ export const variants = {
       transformOrigin: "bottom center",
       opacity: [1, 0],
     },
-    layout: {
-      width: "100%",
-      opacity: 1,
-      transition: {
-        type: "spring",
-        duration: 2.5,
-        bounce: 0.2,
-      },
-    },
+    // layout: {
+    //   width: "100%",
+    //   opacity: 1,
+    //   transition: {
+    //     type: "tween",
+    //     duration: 2.5,
+    //   },
+    // },
     animate: {
       opacity: 1,
       height: "100%",
@@ -163,7 +162,7 @@ export const variants = {
       y: 40,
       opacity: 0,
     },
-    visible: (i: number) => ({
+    visible: {
       y: 0,
       opacity: 1,
       transition: {
@@ -172,10 +171,9 @@ export const variants = {
         mass: 0.85,
         stiffness: 100,
         delayChildren: 10,
-        staggerChildren: 4,
-        delay: i * 0.2,
+        staggerChildren: 40,
       },
-    }),
+    },
     exit: {
       y: -20,
       opacity: 0,
@@ -184,6 +182,12 @@ export const variants = {
         damping: 10,
         mass: 0.3,
         stiffness: 100,
+      },
+    },
+    layout: {
+      transition: {
+        type: "spring",
+        mass: 1,
       },
     },
   },
@@ -224,9 +228,9 @@ export const variants = {
       scale: 1,
       transition: {
         type: "spring",
-        damping: 10,
-        mass: 0.3,
-        stiffness: 100,
+        damping: 5,
+        mass: 0.2,
+        stiffness: 80,
       },
     },
     hidden: { opacity: 0, scale: 0.5 },
@@ -260,59 +264,6 @@ export const variants = {
       },
     },
   },
-  modeTab: {
-    left: {
-      left: "14px",
-      right: "auto",
-      transition: {
-        type: "spring",
-        damping: 10,
-        mass: 0.3,
-        stiffness: 100,
-      },
-    },
-    center: {
-      left: "auto",
-      right: "auto",
-      transition: {
-        type: "spring",
-        damping: 10,
-        mass: 0.3,
-        stiffness: 100,
-      },
-    },
-    right: {
-      right: "14px",
-      left: "auto",
-      transition: {
-        type: "spring",
-        damping: 10,
-        mass: 0.3,
-        stiffness: 100,
-      },
-    },
-    whileHoverDrinking: {
-      right: "auto",
-      left: "40px",
-      transition: {
-        type: "spring",
-        damping: 10,
-        mass: 0.3,
-        stiffness: 100,
-      },
-    },
-    whileHoverStandard: {
-      right: "40px",
-      left: "auto",
-      transition: {
-        type: "spring",
-        damping: 10,
-        mass: 0.3,
-        stiffness: 100,
-      },
-    },
-  },
-  // staggered pop up animation for avatars
   popUpVariants: {
     visible: (i: number) => ({
       opacity: 1,

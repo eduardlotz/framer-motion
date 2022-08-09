@@ -1,7 +1,7 @@
 import { LayoutGroup, motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { Headline } from "../../components";
+import { ContentContainer, Headline } from "../../components";
 
 import homeImage from "../../assets/home.jpeg";
 import { variants } from "../../styles/variants";
@@ -9,7 +9,7 @@ import { SplitSlideUp } from "../../components/typography/SplitText";
 
 export const HomePage = () => {
   return (
-    <Container>
+    <ContentContainer>
       <LayoutGroup>
         <Wrapper>
           <SplitSlideUp text="Understanding" component={Headline} hoverEffect />
@@ -51,7 +51,7 @@ export const HomePage = () => {
           </FlexRow>
         </Wrapper>
       </LayoutGroup>
-    </Container>
+    </ContentContainer>
   );
 };
 

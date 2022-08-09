@@ -74,7 +74,7 @@ export const Navigation = () => {
           animate="visible"
           exit="exit"
         >
-          <NavigationLink to="/why" text="Why" />
+          <NavigationLink to="/toasts" text="Toasts 🍞" />
           <NavigationLink to="/examples" text="Examples" />
           <NavigationLink to="/resources" text="Resources" />
           <NavigationLink to="/about" text="About" />

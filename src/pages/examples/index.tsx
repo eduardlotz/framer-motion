@@ -7,18 +7,15 @@ import {
 import styled from "styled-components";
 
 import homeImage from "../../assets/home.jpeg";
-import { H2, Headline } from "../../components";
-import { Footer, MotionAccordion } from "../../components/molecules";
+import {
+  Footer,
+  MotionAccordion,
+  ContentContainer,
+  H2,
+  Headline,
+} from "../../components";
 import { SplitSlideUp } from "../../components/typography/SplitText";
 import { variants } from "../../styles/variants";
-
-const Container = styled.div`
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  padding-top: 40px;
-`;
 
 const OverflowHidden = styled(motion.div)`
   max-width: 100%;
@@ -41,7 +38,7 @@ export const ExamplesPage = () => {
 
   const imageMotion = useSpring(imageY, physics);
   return (
-    <Container>
+    <ContentContainer layout>
       <Wrapper>
         <SplitSlideUp
           component={H2}
@@ -89,7 +86,7 @@ export const ExamplesPage = () => {
         </motion.div>
       </OverflowHidden>
 
-      <Wrapper>
+      <Wrapper layout>
         <H2
           animate="visible"
           initial="hidden"
@@ -105,7 +102,7 @@ export const ExamplesPage = () => {
       </Wrapper>
 
       <Footer />
-    </Container>
+    </ContentContainer>
   );
 };
 

@@ -27,11 +27,18 @@ export const H2 = styled(motion.h2)`
   font-style: normal;
   font-weight: 700;
   font-size: 52px;
-  line-height: 129.5%;
 
   color: #000000;
 
-  max-width: 70%;
+  margin: 0 0 16px 0;
+`;
 
-  margin: 0;
+export const H5 = styled(motion.h5)`
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+
+  color: #000000;
+
+  margin: 0 0 16px 0;
 `;

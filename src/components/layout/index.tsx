@@ -18,3 +18,21 @@ export const FloatingCard = styled(motion.div)`
 
   border-radius: 24px;
 `;
+
+export const ContentContainer = styled(motion.div)`
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 40px;
+`;
+
+export const CenteredContent = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 800px;
+  max-width: calc(100% - 160px);
+`;

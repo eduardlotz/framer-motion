@@ -6,6 +6,7 @@ import { Logo } from "../atoms";
 export const Footer = () => {
   return (
     <FooterWrapper
+      layout
       variants={variants.slideUp}
       animate="visible"
       initial="initial"
@@ -14,31 +15,32 @@ export const Footer = () => {
       <FooterBorder
         animate={{
           width: "100%",
-          transition: {
-            type: "tweem",
-            duration: 2,
-          },
         }}
         initial={{
           width: 0,
         }}
         exit={{
           width: 0,
-          transition: {
-            type: "tweem",
-            duration: 0.5,
-          },
         }}
+        transition={{ width: { duration: 1.5 }, layout: { duration: 0.2 } }}
+        layout
       />
-      <FooterContent>
-        <Logo to="/">made with framer motion</Logo>
-        <FooterText></FooterText>
+      <FooterContent
+        variants={variants.slideUp}
+        animate="visible"
+        initial="initial"
+        exit="exit"
+      >
+        <FooterText>You have reached the end 🦶</FooterText>
       </FooterContent>
     </FooterWrapper>
   );
 };
 
-const FooterText = styled.p``;
+const FooterText = styled(motion.p)`
+  font-weight: 600;
+  font-size: 16px;
+`;
 
 const FooterWrapper = styled(motion.footer)`
   max-width: 100%;
@@ -46,12 +48,12 @@ const FooterWrapper = styled(motion.footer)`
   padding: 40px 80px;
 `;
 
-const FooterContent = styled.div`
+const FooterContent = styled(motion.div)`
   max-width: 100%;
   max-height: 100%;
 
-  display: grid;
-  grid-template-columns: 0.75fr 1fr;
+  display: flex;
+  justify-content: center;
   align-items: center;
 `;
 
