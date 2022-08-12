@@ -1,8 +1,8 @@
 import { motion, LayoutGroup } from "framer-motion";
-import { useMemo } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { LinkWrapper, Logo, NavLink, NavText } from "../atoms";
+import { Dropdown } from "./dropdown";
 
 export const Navbar = styled(motion.nav)`
   position: fixed;
@@ -13,8 +13,9 @@ export const Navbar = styled(motion.nav)`
   right: 0;
   z-index: 20;
 
-  display: grid;
-  grid-template-columns: 0.75fr 1fr;
+  display: flex;
+  justify-content: space-between;
+
   align-items: center;
   padding: 0px 80px;
   max-width: 100%;
@@ -55,6 +56,12 @@ const navbarVariants = {
   },
 };
 
+const dropdownContent = [
+  <NavLink to="/">Home</NavLink>,
+  <NavLink to="/toasts">Toasts</NavLink>,
+  <NavLink to="/error">Error</NavLink>,
+];
+
 export const Navigation = () => {
   return (
     <Navbar>
@@ -78,6 +85,7 @@ export const Navigation = () => {
           <NavigationLink to="/examples" text="Examples" />
           <NavigationLink to="/resources" text="Resources" />
           <NavigationLink to="/about" text="About" />
+          <Dropdown content={dropdownContent}>More</Dropdown>
         </LinkWrapper>
       </LayoutGroup>
     </Navbar>
@@ -92,9 +100,7 @@ interface INavigationLinkProps {
 export const NavigationLink = ({ to, text }: INavigationLinkProps) => {
   const location = useLocation();
 
-  const isActive = useMemo(() => {
-    return location.pathname === to;
-  }, [location, to]);
+  const isActive = location.pathname === to;
 
   return (
     <NavLink to={to} whileHover="hover">

@@ -1,4 +1,4 @@
-import { LayoutGroup, motion } from "framer-motion";
+import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { ContentContainer, Headline } from "../../components";
@@ -13,7 +13,7 @@ export const HomePage = () => {
       <LayoutGroup>
         <Wrapper>
           <SplitSlideUp text="Understanding" component={Headline} hoverEffect />
-          <FlexRow style={{ marginTop: "-12px" }} layout>
+          <FlexRow style={{ marginTop: "-12px" }}>
             <SplitSlideUp
               text="every"
               delay={2}
@@ -21,25 +21,34 @@ export const HomePage = () => {
               hoverEffect
             />
 
-            <FitContentWrapper layout>
-              <ImageAnimationWrapper
-                layoutId="home-image"
-                variants={variants.heightExpand}
-                initial="initial"
-                animate="animate"
-                whileHover="parentHover"
-              >
-                <Link to="/examples">
-                  <Image
-                    layoutId="home-image-src"
-                    initial={false}
-                    animate="animate"
-                    variants={variants.heightExpand}
-                    whileHover="childHover"
-                    src={homeImage}
-                  />
-                </Link>
-              </ImageAnimationWrapper>
+            <FitContentWrapper>
+              <AnimatePresence>
+                <ImageAnimationWrapper
+                  layoutId="home-image"
+                  variants={variants.heightExpand}
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  whileHover="parentHover"
+                  transition={{
+                    type: "spring",
+                    mass: 0.7,
+                    damping: 40,
+                    stiffness: 150,
+                  }}
+                >
+                  <Link to="/examples">
+                    <Image
+                      layoutId="home-image-src"
+                      initial={false}
+                      animate="animate"
+                      variants={variants.heightExpand}
+                      whileHover="childHover"
+                      src={homeImage}
+                    />
+                  </Link>
+                </ImageAnimationWrapper>
+              </AnimatePresence>
             </FitContentWrapper>
 
             <SplitSlideUp
@@ -99,15 +108,6 @@ const Wrapper = styled.div`
 
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-
-const Container = styled(motion.div)`
-  width: 100%;
-  height: 100%;
-
-  display: flex;
   align-items: center;
   justify-content: center;
 `;

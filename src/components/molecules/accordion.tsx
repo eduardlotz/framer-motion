@@ -29,9 +29,8 @@ const MotionAccordionItem = ({
         exit="exit"
         variants={variants.slideUp}
         custom={index}
-        layout
       >
-        <AccordionTitle layout>Wie funktioniert das?</AccordionTitle>
+        <AccordionTitle>Wie funktioniert das?</AccordionTitle>
         <IconButton>
           <motion.svg
             width="24"
@@ -63,12 +62,18 @@ const MotionAccordionItem = ({
           </motion.svg>
         </IconButton>
       </AccordionHeader>
-      <AnimatePresence>
+      <AnimatePresence initial={false}>
         {isOpen && (
           <AccordionContent
-            animate={{ y: 0, opacity: 1 }}
-            initial={{ y: -10, opacity: 0 }}
-            exit={{ y: -10, opacity: 0, transition: { beforeChildren: true } }}
+            animate={{ y: 0, opacity: 1, height: "auto" }}
+            initial={{ y: -10, opacity: 0, height: 0 }}
+            exit={{ y: -10, opacity: 0, height: 0 }}
+            transition={{
+              type: "spring",
+              mass: 0.2,
+              stiffness: 60,
+              damping: 10,
+            }}
           >
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             Pellentesque euismod, ipsum eget sagittis porttitor, nisi urna porta
@@ -89,33 +94,31 @@ export const MotionAccordion = () => {
   };
 
   return (
-    <LayoutGroup>
-      <Accordion
-        animate="visible"
-        whileInView="visible"
-        viewport={{ once: true }}
-        initial="hidden"
-        exit="exit"
-        variants={variants.slideUp}
-        layout
-      >
-        <MotionAccordionItem
-          index={0}
-          isOpen={openItem === 0}
-          onClick={() => openAccordion(0)}
-        />
-        <MotionAccordionItem
-          index={1}
-          isOpen={openItem === 1}
-          onClick={() => openAccordion(1)}
-        />
-        <MotionAccordionItem
-          index={2}
-          isOpen={openItem === 2}
-          onClick={() => openAccordion(2)}
-        />
-      </Accordion>
-    </LayoutGroup>
+    <Accordion
+      animate="visible"
+      whileInView="visible"
+      viewport={{ once: true }}
+      initial="hidden"
+      exit="exit"
+      variants={variants.slideUp}
+      layout
+    >
+      <MotionAccordionItem
+        index={0}
+        isOpen={openItem === 0}
+        onClick={() => openAccordion(0)}
+      />
+      <MotionAccordionItem
+        index={1}
+        isOpen={openItem === 1}
+        onClick={() => openAccordion(1)}
+      />
+      <MotionAccordionItem
+        index={2}
+        isOpen={openItem === 2}
+        onClick={() => openAccordion(2)}
+      />
+    </Accordion>
   );
 };
 
@@ -174,6 +177,7 @@ const AccordionContent = styled(motion.div)`
   color: #1e1f24;
 
   padding: 8px 0;
+  position: relative;
 `;
 
 const IconButton = styled(motion.button)`

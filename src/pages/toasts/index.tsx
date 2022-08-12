@@ -93,14 +93,23 @@ export const ToastsPage = () => {
               <AnimatePresence>
                 {toasts.map((toast) => (
                   <Toast
-                    layout
+                    layout="position"
                     key={toast.id}
-                    // layoutId={"toast-" + toast.id}
                     type={toast.type}
                     variants={variants.popUp}
                     initial="hidden"
                     animate="visible"
                     exit="exit"
+                    transition={{
+                      layout: {
+                        type: "spring",
+                        damping: 20,
+                      },
+                    }}
+                    style={{
+                      position: "relative", // inline styles to avoid distortions & weird overlap
+                      borderRadius: "16px",
+                    }}
                   >
                     <motion.span>{toast.message}</motion.span>
                     <IconButton onClick={removeToast(toast.id)}>

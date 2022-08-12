@@ -33,4 +33,5 @@ const Container = styled.div`
   width: 100%;
   max-height: 100%;
   height: calc(100vh - 112px);
+  display: flex;
 `;

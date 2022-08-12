@@ -1,4 +1,5 @@
 import {
+  AnimatePresence,
   motion,
   useSpring,
   useTransform,
@@ -46,28 +47,30 @@ export const ExamplesPage = () => {
           splitBy="words"
         />
       </Wrapper>
-
-      <ImageAnimationWrapper
-        layoutId="home-image"
-        id="home-image"
-        variants={variants.heightExpand}
-        initial="initial"
-        animate="animate"
-        exit="exit"
-        transition={{
-          type: "spring",
-          mass: 0.7,
-          damping: 40,
-          stiffness: 150,
-        }}
-      >
-        <FullScreenImage
-          layoutId="home-image-src"
-          src={homeImage}
-          style={{ y: imageMotion }}
-        />
-      </ImageAnimationWrapper>
-
+      <AnimatePresence initial={false}>
+        <ImageAnimationWrapper
+          layoutId="home-image"
+          id="home-image"
+          variants={variants.heightExpand}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          transition={{
+            layout: {
+              type: "spring",
+              mass: 0.7,
+              damping: 40,
+              stiffness: 150,
+            },
+          }}
+        >
+          <FullScreenImage
+            layoutId="home-image-src"
+            src={homeImage}
+            style={{ y: imageMotion }}
+          />
+        </ImageAnimationWrapper>
+      </AnimatePresence>
       <OverflowHidden>
         <motion.div
           style={{ x: headlineMotion }}
@@ -85,7 +88,6 @@ export const ExamplesPage = () => {
           />
         </motion.div>
       </OverflowHidden>
-
       <Wrapper layout>
         <H2
           animate="visible"
@@ -100,7 +102,6 @@ export const ExamplesPage = () => {
           <MotionAccordion />
         </MinMaxWidth>
       </Wrapper>
-
       <Footer />
     </ContentContainer>
   );

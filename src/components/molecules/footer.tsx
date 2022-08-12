@@ -1,12 +1,11 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
 import { variants } from "../../styles/variants";
-import { Logo } from "../atoms";
 
 export const Footer = () => {
   return (
     <FooterWrapper
-      layout
+      layout="position"
       variants={variants.slideUp}
       animate="visible"
       initial="initial"
@@ -23,7 +22,6 @@ export const Footer = () => {
           width: 0,
         }}
         transition={{ width: { duration: 1.5 }, layout: { duration: 0.2 } }}
-        layout
       />
       <FooterContent
         variants={variants.slideUp}

@@ -15,18 +15,20 @@ export const Logo = styled(motion(Link))`
 `;
 
 export const LinkWrapper = styled(motion.div)`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
-  gap: 16px;
+  display: flex;
+
+  gap: 32px;
   align-items: center;
-  justify-items: flex-end;
-  width: 100%;
+  justify-content: center;
 `;
 
 export const NavLink = styled(motion(Link))`
   position: relative;
   text-decoration: none;
   padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const NavText = styled(motion.span)<{ activated: boolean }>`

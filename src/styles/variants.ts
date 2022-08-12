@@ -170,8 +170,8 @@ export const variants = {
         damping: 10,
         mass: 0.85,
         stiffness: 100,
-        delayChildren: 10,
-        staggerChildren: 40,
+        delayChildren: 0.2,
+        staggerChildren: 0.2,
       },
     },
     exit: {
