@@ -14,6 +14,7 @@ import {
   ContentContainer,
   H2,
   Headline,
+  FlexStartWrapper,
 } from "../../components";
 import { SplitSlideUp } from "../../components/typography/SplitText";
 import { variants } from "../../styles/variants";
@@ -40,21 +41,30 @@ export const ExamplesPage = () => {
   const imageMotion = useSpring(imageY, physics);
   return (
     <ContentContainer layout>
-      <Wrapper>
+      <FlexStartWrapper>
         <SplitSlideUp
           component={H2}
           text="framer motion animation examples"
           splitBy="words"
         />
-      </Wrapper>
-      <AnimatePresence initial={false}>
+      </FlexStartWrapper>
+      <AnimatePresence initial={false} exitBeforeEnter>
         <ImageAnimationWrapper
           layoutId="home-image"
           id="home-image"
           variants={variants.heightExpand}
           initial="initial"
           animate="animate"
-          exit="exit"
+          exit={{
+            y: 40,
+            opacity: 0,
+            transition: {
+              type: "spring",
+              damping: 10,
+              mass: 0.8,
+              stiffness: 60,
+            },
+          }}
           transition={{
             layout: {
               type: "spring",
@@ -88,7 +98,7 @@ export const ExamplesPage = () => {
           />
         </motion.div>
       </OverflowHidden>
-      <Wrapper layout>
+      <FlexStartWrapper layout>
         <H2
           animate="visible"
           initial="hidden"
@@ -101,7 +111,7 @@ export const ExamplesPage = () => {
         <MinMaxWidth min={"60%"} max={"60%"}>
           <MotionAccordion />
         </MinMaxWidth>
-      </Wrapper>
+      </FlexStartWrapper>
       <Footer />
     </ContentContainer>
   );
@@ -139,21 +149,6 @@ const ImageAnimationWrapper = styled(motion.div)`
   overflow: hidden;
   height: fit-content;
   position: relative;
-
-  margin-bottom: 80px;
-`;
-
-const Wrapper = styled(motion.div)`
-  max-width: 1440px;
-  padding: 0 80px;
-  max-height: 100%;
-  height: 100%;
-  position: relative;
-
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
 
   margin-bottom: 80px;
 `;

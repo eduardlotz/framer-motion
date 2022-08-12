@@ -103,7 +103,8 @@ export const ToastsPage = () => {
                     transition={{
                       layout: {
                         type: "spring",
-                        damping: 20,
+                        damping: 15,
+                        stiffness: 80,
                       },
                     }}
                     style={{

@@ -91,14 +91,15 @@ export const variants = {
       transformOrigin: "bottom center",
       opacity: [1, 0],
     },
-    // layout: {
-    //   width: "100%",
-    //   opacity: 1,
-    //   transition: {
-    //     type: "tween",
-    //     duration: 2.5,
-    //   },
-    // },
+    layout: {
+      width: "100%",
+      opacity: 1,
+      transition: {
+        transformOrigin: "bottom center",
+        type: "tween",
+        duration: 2.5,
+      },
+    },
     animate: {
       opacity: 1,
       height: "100%",
@@ -241,7 +242,7 @@ export const variants = {
         type: "spring",
         damping: 10,
         mass: 0.3,
-        stiffness: 100,
+        stiffness: 80,
       },
     },
   },

@@ -30,7 +30,7 @@ const MotionAccordionItem = ({
         variants={variants.slideUp}
         custom={index}
       >
-        <AccordionTitle>Wie funktioniert das?</AccordionTitle>
+        <AccordionTitle>Dolor sit amet</AccordionTitle>
         <IconButton>
           <motion.svg
             width="24"
@@ -65,6 +65,7 @@ const MotionAccordionItem = ({
       <AnimatePresence initial={false}>
         {isOpen && (
           <AccordionContent
+            layout="size"
             animate={{ y: 0, opacity: 1, height: "auto" }}
             initial={{ y: -10, opacity: 0, height: 0 }}
             exit={{ y: -10, opacity: 0, height: 0 }}
@@ -135,6 +136,7 @@ const Accordion = styled(motion.div)`
 
 const AccordionItem = styled(motion.div)`
   width: 100%;
+  max-height: auto;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -178,6 +180,7 @@ const AccordionContent = styled(motion.div)`
 
   padding: 8px 0;
   position: relative;
+  min-height: 0;
 `;
 
 const IconButton = styled(motion.button)`

@@ -35,3 +35,18 @@ export const CenteredContent = styled(motion.div)`
   width: 800px;
   max-width: calc(100% - 160px);
 `;
+
+export const FlexStartWrapper = styled(motion.div)`
+  max-width: 1440px;
+  padding: 0 80px;
+  max-height: 100%;
+  height: 100%;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  margin-bottom: 80px;
+`;

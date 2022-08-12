@@ -5,6 +5,7 @@ import { Navigation } from "./components/molecules";
 import { AboutPage } from "./pages/about";
 import { AnimatePresence } from "framer-motion";
 import { ToastsPage } from "./pages/toasts";
+import { PlaygroundPage } from "./pages/playground";
 
 function App() {
   const location = useLocation();
@@ -18,6 +19,7 @@ function App() {
             <Route path="/home" element={<HomePage />} />
             <Route path="/examples" element={<ExamplesPage />} />
             <Route path="/about" element={<AboutPage />} />
+            <Route path="/playground" element={<PlaygroundPage />} />
             <Route path="/toasts" element={<ToastsPage />} />
             <Route path="*" element={<ErrorPage />} />
           </Routes>

@@ -83,7 +83,7 @@ export const Navigation = () => {
         >
           <NavigationLink to="/toasts" text="Toasts 🍞" />
           <NavigationLink to="/examples" text="Examples" />
-          <NavigationLink to="/resources" text="Resources" />
+          <NavigationLink to="/playground" text="Playground" />
           <NavigationLink to="/about" text="About" />
           <Dropdown content={dropdownContent}>More</Dropdown>
         </LinkWrapper>
