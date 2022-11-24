@@ -178,7 +178,7 @@ const AccordionContent = styled(motion.div)`
 
   color: #1e1f24;
 
-  padding: 8px 0;
+  /* padding: 8px 0; */
   position: relative;
   min-height: 0;
 `;

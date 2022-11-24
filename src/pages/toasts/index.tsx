@@ -107,10 +107,6 @@ export const ToastsPage = () => {
                         stiffness: 80,
                       },
                     }}
-                    style={{
-                      position: "relative", // inline styles to avoid distortions & weird overlap
-                      borderRadius: "16px",
-                    }}
                   >
                     <motion.span>{toast.message}</motion.span>
                     <IconButton onClick={removeToast(toast.id)}>
